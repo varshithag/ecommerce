@@ -1,5 +1,5 @@
 const mongoose=require('mongoose')
-const Schema=express.Schema
+const Schema=mongoose.Schema
 const addressSchema=new Schema({
     street:{
         type:String
@@ -20,5 +20,5 @@ const addressSchema=new Schema({
         ref:'User'
     }
 })
-const Address=mongoose.connect('Address',addressSchema)
+const Address=mongoose.model('Address',addressSchema)
 module.exports=Address

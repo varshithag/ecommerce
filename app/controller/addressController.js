@@ -1,8 +1,8 @@
-const Address=require('../model/address')
 const express=require('express')
+const Address=require('../model/address')
 const router=express.Router()
 const {authenticateUser}=require('../middlewares/authentication')
-router.get('/',authenticateUser,function(req,res){
+router.get('/',function(req,res){
     console.log('i am in address controller')
     const user=req.user
     const Address=this
@@ -12,11 +12,11 @@ router.get('/',authenticateUser,function(req,res){
     .then((address)=>{
         res.json(address)
     })
-    .catch(err=>{
+    .catch(err=>{   
         res.json(err)
     })
 })
-router.post('/',authenticateUser,function(req,res){
+router.post('/',function(req,res){
     const {user}=req
     const body=req.body
     const address=new Address(body)
@@ -29,7 +29,7 @@ router.post('/',authenticateUser,function(req,res){
         res.json(err)
     })
 })
-router.put('/:id',authenticateUser,(req,res)=>{
+router.put('/:id',(req,res)=>{
     const id=req.params.id
     const body=req.body
     Address.findOneAndUpdate({
@@ -44,7 +44,7 @@ router.put('/:id',authenticateUser,(req,res)=>{
     })
 })
 
-router.delete('/:id',authenticateUser,(req,res)=>{
+router.delete('/:id',(req,res)=>{
     const id=req.params.id
     Address.findOneAndDelete({
         user:req.user._id,

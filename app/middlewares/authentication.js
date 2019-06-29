@@ -1,8 +1,12 @@
-const { User } = require('../models/User')
+const  User = require('../model/user')
 
 const authenticateUser = function(req, res, next){
     const token = req.header('x-auth')
-    
+    //const {user}=req
+    //const isAdmin=user.isadmin
+    //if(isAdmin){
+        //next()
+    //}
     User.findByToken(token)
         .then(function (user) {
             if(user) {
@@ -20,3 +24,5 @@ const authenticateUser = function(req, res, next){
 }
 
 module.exports =authenticateUser
+
+
