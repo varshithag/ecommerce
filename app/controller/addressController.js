@@ -3,6 +3,7 @@ const express=require('express')
 const router=express.Router()
 const {authenticateUser}=require('../middlewares/authentication')
 router.get('/',authenticateUser,function(req,res){
+    console.log('i am in address controller')
     const user=req.user
     const Address=this
     Address.find({
@@ -57,11 +58,5 @@ router.delete('/:id',authenticateUser,(req,res)=>{
 })
 
 })
-
-
-
-
-
-
 const addressRouter=router
 module.exports=addressRouter

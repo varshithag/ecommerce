@@ -1,4 +1,4 @@
-const express=require('express')
+const mongoose=require('mongoose')
 const Schema=express.Schema
 const addressSchema=new Schema({
     street:{
@@ -15,7 +15,7 @@ const addressSchema=new Schema({
     landmark:{
         type:String
     },
-    user:{
+    users:{
         type:Schema.Types.ObjectId,
         ref:'User'
     }
