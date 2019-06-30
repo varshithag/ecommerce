@@ -9,7 +9,7 @@ router.get('/',(req,res)=>{
         .catch(err=> res.json(err))
 })
 
-router.post('/',(req,res)=>{
+router.post('/',authouriesUser,(req,res)=>{
     const body=req.body
     const category=new Category(body)
     category.save()
@@ -21,7 +21,7 @@ router.post('/',(req,res)=>{
     })
 
 })
-router.delete('/:id',(req,res)=>{
+router.delete('/:id',authouriesUser,(req,res)=>{
     const id=req.params.id
     Category.findByIdAndDelete(id)
     .then(category=>{
