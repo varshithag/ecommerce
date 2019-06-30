@@ -9,11 +9,13 @@ const mongoose=require('./config/database')
 const addressRouter=require('./app/controller/addressController')
 const usersRouter=require('./app/controller/userController')
 const categoryRouter=require('./app/controller/categoryController')
+const productRouter=require('./app/controller/productController')
 // 
 
 app.use('/users',usersRouter)
 app.use('/address',addressRouter)
 app.use('/category',categoryRouter)
+app.use('/products',productRouter)
 
 app.listen(port,function(){
     console.log('listening to port',port)

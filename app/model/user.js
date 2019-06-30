@@ -24,6 +24,10 @@ const userSchema=new Schema({
             }
         }
     },
+    isAdmin:{
+        type:String,
+        default:false
+    },
     password:{
             type:String,
             required:true,

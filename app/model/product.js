@@ -20,8 +20,8 @@ const prouuctSchema=new Schema({
         type:String
     },
     category:{
-        type:Schema.Types.ObjextId,
-        ref:"Caegory"
+        type:Schema.Types.ObjectId,
+        ref:"Category"
     }
 
 })
