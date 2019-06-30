@@ -3,6 +3,7 @@ const validator=require('validator')
 const jwt=require('jsonwebtoken')
 const bcryptjs=require('bcryptjs')
 const Schema=mongoose.Schema
+
 const userSchema=new Schema({
     username:{
         type:String,
@@ -66,17 +67,13 @@ userSchema.pre('save',function(next){
 })
 userSchema.statics.findByCredentials=function(email,password){
 const User=this
-
 return User.findOne({email})
-        .then(function(user){
-            
+        .then(function(user){            
             if(!user){
                 return Promise.reject('invalid email/password')
-
             }
             return bcryptjs.compare(password,user.password)
-                .then(function(result){
-                    
+                .then(function(result){                    
                     if(result){
                         return Promise.resolve(user)
                     }
@@ -101,12 +98,12 @@ userSchema.statics.findByToken=function(token){
         return Promise.reject(err)
     }
     return User.findOne({
-        _id:tokenData.id,
+        _id:tokenData._id,
         'tokens.token':token
     })
 }
-userSchema.methods.gentrateToken=function(){
-   
+
+userSchema.methods.gentrateToken=function(){   
     const user=this
     console.log(user)
     const tokenData={
@@ -114,11 +111,12 @@ userSchema.methods.gentrateToken=function(){
         username:user.username,
         createdAt:Number(Date.now())
     }
-    const token=jwt.sign(tokenData,'jwt@123')
-   
+
+    const token=jwt.sign(tokenData,'jwt@123')   
     user.tokens.push({
         token
-    })  
+    })
+      
     return user.save()
     .then(function(user){
         return Promise.resolve(token)

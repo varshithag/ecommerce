@@ -15,7 +15,7 @@ const addressSchema=new Schema({
     landmark:{
         type:String
     },
-    users:{
+    user:{
         type:Schema.Types.ObjectId,
         ref:'User'
     }

@@ -2,28 +2,25 @@ const express=require('express')
 const router=express.Router()
 const User=require('../model/user')
 const authenticateUser=require('../middlewares/authentication')
+
 router.post('/register',function(req,res){
     const body=req.body
-
     const user=new User(body) 
     console.log(user)
     user.save()
         .then(function(user){
-        console.log(user+"i m in post register")
-        res.json(user)
-    })
+             res.send(user)
+        })
     .catch(function(err){
-        res.json(err)
+            res.send(err)
     })
 })
 router.post('/login', function(req, res){
-    const body = req.body 
-    
+    const body = req.body    
     User.findByCredentials(body.email, body.password)
         .then(function(user){
              return user.gentrateToken()
         })
-
         .then(function(token){
             res.send({token})
             // res.setHeader('x-auth', token).send({})
