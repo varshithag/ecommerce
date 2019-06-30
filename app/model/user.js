@@ -34,6 +34,10 @@ const userSchema=new Schema({
             minlength:6,
             maxlength:128
         },
+        review:{
+            type:Schema.Types.ObjectId,
+            ref:"Review"
+        },
         tokens:[
 
 
