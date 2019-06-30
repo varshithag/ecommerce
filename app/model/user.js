@@ -3,6 +3,8 @@ const validator=require('validator')
 const jwt=require('jsonwebtoken')
 const bcryptjs=require('bcryptjs')
 const Schema=mongoose.Schema
+const Cart=require('../model/cartLineItem')
+
 
 const userSchema=new Schema({
     username:{
@@ -38,9 +40,8 @@ const userSchema=new Schema({
             type:Schema.Types.ObjectId,
             ref:"Review"
         },
+        cart:[Cart],
         tokens:[
-
-
             {
                 token:{
                     type:String
